@@ -18,10 +18,6 @@ const routes: Routes = [
   {
     path: 'new-note',
     loadChildren: './pages/new-note/new-note.module#NewNotePageModule'
-  },
-  {
-    path: 'note-details/:noteId',
-    loadChildren: './pages/note-details/note-details.module#NoteDetailsPageModule'
   }
 ];
 

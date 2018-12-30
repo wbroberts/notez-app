@@ -1,7 +1,7 @@
 export interface Note {
   id: string;
   title: string;
-  body: string;
+  body: any;
   dateCreated: Date;
   lastEdited?: string;
   color?: string;

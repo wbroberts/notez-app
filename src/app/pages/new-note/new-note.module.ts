@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 
 import { NewNotePage } from './new-note.page';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { QuillComponent } from './../../components/quill/quill.component';
 
 const routes: Routes = [
   {
@@ -24,6 +25,6 @@ const routes: Routes = [
     ReactiveFormsModule,
     SharedModule
   ],
-  declarations: [NewNotePage]
+  declarations: [NewNotePage, QuillComponent]
 })
 export class NewNotePageModule {}

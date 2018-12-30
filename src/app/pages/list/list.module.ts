@@ -8,6 +8,7 @@ import { ListPage } from './list.page';
 
 import { NoteItemComponent } from './../../components/note-item/note-item.component';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { NoteDetailModal } from '../../components/note-detail/note-detail.modal';
 
 @NgModule({
   imports: [
@@ -22,6 +23,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
     ]),
     SharedModule
   ],
-  declarations: [ListPage, NoteItemComponent]
+  declarations: [ListPage, NoteItemComponent, NoteDetailModal],
+  entryComponents: [NoteDetailModal]
 })
 export class ListPageModule {}

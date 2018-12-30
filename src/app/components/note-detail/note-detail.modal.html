@@ -1,0 +1,29 @@
+<ion-content padding>
+  <ion-button type="button" fill="none" (click)="closeModal()">Close Modal</ion-button>
+  <div *ngIf="isLoaded">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <h1>{{ note.title }}</h1>
+          <p>{{ note.lastEdited }}</p>
+        </ion-col>
+
+        <ion-col>
+          <ion-button type="button" (click)="deleteNote()">
+            <ion-icon name="trash" size="large"></ion-icon>
+          </ion-button>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <div [innerHTML]="body"></div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+  <div *ngIf="!isLoaded">
+    <ion-spinner></ion-spinner>
+  </div>
+</ion-content>

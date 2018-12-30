@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import * as moment from 'moment';
 
 import { NoteService } from 'src/app/services/note.service';
 import { Note } from 'src/app/models/note.model';
-import { NavParams } from '@ionic/angular';
+import { ModalController } from '@ionic/angular';
+import { NoteDetailModal } from './../../components/note-detail/note-detail.modal';
 
 @Component({
   selector: 'app-list',
@@ -12,13 +12,10 @@ import { NavParams } from '@ionic/angular';
   styleUrls: ['list.page.scss']
 })
 export class ListPage implements OnInit {
-  private selectedItem: any;
-
   notes: Note[] = [];
-
   noNotes: boolean = false;
 
-  constructor(private noteService: NoteService, private router: Router) {}
+  constructor(private noteService: NoteService, public mCtrl: ModalController) {}
 
   ngOnInit() {
     this.noteService.getAllNotes().then(notes => {
@@ -33,8 +30,22 @@ export class ListPage implements OnInit {
     });
   }
 
-  viewNoteDetails(noteId: string) {
-    this.router.navigate(['note-details', noteId]);
+  async viewNoteDetails(noteId: string) {
+    const modal = await this.mCtrl.create({
+      component: NoteDetailModal,
+      componentProps: {
+        noteId
+      },
+      showBackdrop: true
+    });
+
+    modal.onWillDismiss().then(res => {
+      if (res.data.deleted) {
+        this.notes = this.notes.filter(note => note.id !== res.data.noteId);
+      }
+    });
+
+    return await modal.present();
   }
 
   private sortByLastTouched(array: Note[]) {}

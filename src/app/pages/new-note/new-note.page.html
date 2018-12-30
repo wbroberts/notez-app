@@ -4,15 +4,11 @@
   <form [formGroup]="noteForm" (ngSubmit)="saveNote()">
     <ion-item lines="none">
       <ion-label position="stacked">Note Title</ion-label>
-      <ion-input type="text" formControlName="title"></ion-input>
+      <ion-input type="text" formControlName="title" required></ion-input>
     </ion-item>
 
-    <ion-item lines="none">
-      <ion-textarea placeholder="Write a note..." formControlName="body"></ion-textarea>
-    </ion-item>
+    <app-quill #quill></app-quill>
 
-    <ion-item lines="none">
-      <ion-button type="submit" expand="block">Save Note</ion-button>
-    </ion-item>
+    <ion-button type="submit" expand="block">Save Note</ion-button>
   </form>
 </ion-content>
