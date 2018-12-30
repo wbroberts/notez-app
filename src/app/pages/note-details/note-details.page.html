@@ -1,0 +1,15 @@
+<app-header></app-header>
+
+<ion-content padding>
+  <div *ngIf="isLoaded">
+    <h1>{{ note.title }}</h1>
+    <p>{{ note.lastEdited }}</p>
+    <div>
+      {{ note.body }}
+    </div>
+  </div>
+
+  <div>
+    <ion-spinner *ngIf="!isLoaded"></ion-spinner>
+  </div>
+</ion-content>

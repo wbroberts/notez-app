@@ -1,0 +1,18 @@
+<app-header title="Create A New Note"></app-header>
+
+<ion-content padding>
+  <form [formGroup]="noteForm" (ngSubmit)="saveNote()">
+    <ion-item lines="none">
+      <ion-label position="stacked">Note Title</ion-label>
+      <ion-input type="text" formControlName="title"></ion-input>
+    </ion-item>
+
+    <ion-item lines="none">
+      <ion-textarea placeholder="Write a note..." formControlName="body"></ion-textarea>
+    </ion-item>
+
+    <ion-item lines="none">
+      <ion-button type="submit" expand="block">Save Note</ion-button>
+    </ion-item>
+  </form>
+</ion-content>

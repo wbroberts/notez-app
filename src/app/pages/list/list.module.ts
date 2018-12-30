@@ -4,7 +4,10 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { RouterModule } from '@angular/router';
 
-import { HomePage } from './home.page';
+import { ListPage } from './list.page';
+
+import { NoteItemComponent } from './../../components/note-item/note-item.component';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
   imports: [
@@ -14,10 +17,11 @@ import { HomePage } from './home.page';
     RouterModule.forChild([
       {
         path: '',
-        component: HomePage
+        component: ListPage
       }
-    ])
+    ]),
+    SharedModule
   ],
-  declarations: [HomePage]
+  declarations: [ListPage, NoteItemComponent]
 })
-export class HomePageModule {}
+export class ListPageModule {}

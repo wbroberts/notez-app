@@ -10,15 +10,14 @@
 </ion-header>
 
 <ion-content>
-  <ion-list>
-    <ion-item *ngFor="let item of items">
-      <ion-icon [name]="item.icon" slot="start"></ion-icon>
-      {{item.title}}
-      <div class="item-note" slot="end">
-        {{item.note}}
-      </div>
-    </ion-item>
+  <ion-list *ngIf="!noNotes">
+    <app-note-item *ngFor="let note of notes" title="{{note.title}}" lastEdited="{{note.lastEdited}}" (click)="viewNoteDetails(note.id)">
+    </app-note-item>
   </ion-list>
+
+  <div *ngIf="noNotes">
+    <p>Looks like you haven't written any notes...</p>
+  </div>
   <!--
     <div *ngIf="selectedItem" padding>
       You navigated here from <b>{{selectedItem.title }}</b>

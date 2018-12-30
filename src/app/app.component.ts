@@ -16,9 +16,14 @@ export class AppComponent {
       icon: 'home'
     },
     {
-      title: 'List',
-      url: '/list',
+      title: 'All Notes',
+      url: '/notes',
       icon: 'list'
+    },
+    {
+      title: 'New Note',
+      url: '/new-note',
+      icon: 'create'
     }
   ];
 
