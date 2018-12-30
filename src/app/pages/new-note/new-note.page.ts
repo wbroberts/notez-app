@@ -35,6 +35,8 @@ export class NewNotePage implements OnInit {
     };
 
     this.noteService.saveNote(note).then(() => {
+      this.noteForm.reset();
+      this.quill.deleteContents();
       this.router.navigate(['notes']);
     });
   }

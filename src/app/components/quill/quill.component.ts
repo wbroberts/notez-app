@@ -21,4 +21,8 @@ export class QuillComponent implements AfterViewInit {
   getContents() {
     return this._quill.getContents();
   }
+
+  deleteContents() {
+    return this._quill.setText('');
+  }
 }
