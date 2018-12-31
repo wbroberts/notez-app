@@ -1,15 +1,17 @@
-import { QuillComponent } from './../../components/quill/quill.component';
-import { Component, ViewChild, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ModalController } from '@ionic/angular';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { NoteService } from 'src/app/services/note.service';
 import { Router } from '@angular/router';
 
+import { QuillComponent } from '../quill/quill.component';
+
 @Component({
-  selector: 'app-new-note',
-  templateUrl: './new-note.page.html',
-  styleUrls: ['./new-note.page.scss']
+  selector: 'app-new-note-modal',
+  templateUrl: './new-note.modal.html',
+  styleUrls: ['./new-note.modal.scss']
 })
-export class NewNotePage implements OnInit {
+export class NewNoteModal implements OnInit {
   @ViewChild(QuillComponent) quill: QuillComponent;
 
   private noteForm: FormGroup;
@@ -17,7 +19,7 @@ export class NewNotePage implements OnInit {
   constructor(
     private fb: FormBuilder,
     private noteService: NoteService,
-    private router: Router
+    private mCtrl: ModalController
   ) {
     this.noteForm = this.fb.group({
       title: ['', Validators.required]
@@ -25,6 +27,15 @@ export class NewNotePage implements OnInit {
   }
 
   ngOnInit() {}
+
+  dismissModal(isAdded: boolean) {
+    this.noteForm.reset();
+    this.quill.deleteContents();
+
+    this.mCtrl.dismiss({
+      add: isAdded
+    });
+  }
 
   saveNote() {
     const body = this.quill.getContents();
@@ -39,9 +50,7 @@ export class NewNotePage implements OnInit {
     }
 
     this.noteService.saveNote(note).then(() => {
-      this.noteForm.reset();
-      this.quill.deleteContents();
-      this.router.navigate(['notes']);
+      this.dismissModal(true);
     });
   }
 }

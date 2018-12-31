@@ -1,0 +1,17 @@
+.search {
+  background: hsla(247, 47%, 61%, 0.34);
+  border: none;
+  border-radius: 25px;
+  padding: 8px 14px;
+  transition: background 150ms ease-in;
+  width: 100%;
+}
+
+.search::placeholder {
+  color: hsl(247, 28%, 88%);
+}
+
+.search:focus {
+  background: hsla(247, 84%, 75%, 0.34);
+  outline: none;
+}

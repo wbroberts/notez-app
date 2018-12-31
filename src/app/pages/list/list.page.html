@@ -1,13 +1,6 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
-    <ion-title>
-      List
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+<app-header>
+  <app-search (filter)="filterNotes($event)"></app-search>
+</app-header>
 
 <ion-content>
   <ion-list *ngIf="!noNotes">
@@ -18,9 +11,7 @@
   <div *ngIf="noNotes">
     <p>Looks like you haven't written any notes...</p>
   </div>
-  <!--
-    <div *ngIf="selectedItem" padding>
-      You navigated here from <b>{{selectedItem.title }}</b>
-    </div>
-  -->
+
+  <app-new-button (added)="newNoteAdded($event)"></app-new-button>
+
 </ion-content>

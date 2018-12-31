@@ -11,4 +11,7 @@ export class NoteItemComponent {
 
   @Input()
   lastEdited: string;
+
+  @Input()
+  color: string = 'lightseagreen';
 }

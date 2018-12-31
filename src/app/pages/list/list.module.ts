@@ -1,6 +1,7 @@
+import { NewNoteModal } from '../../components/new-note-modal/new-note.modal';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { RouterModule } from '@angular/router';
 
@@ -21,9 +22,10 @@ import { NoteDetailModal } from '../../components/note-detail/note-detail.modal'
         component: ListPage
       }
     ]),
-    SharedModule
+    SharedModule,
+    ReactiveFormsModule
   ],
-  declarations: [ListPage, NoteItemComponent, NoteDetailModal],
-  entryComponents: [NoteDetailModal]
+  declarations: [ListPage, NoteItemComponent, NoteDetailModal, NewNoteModal],
+  entryComponents: [NoteDetailModal, NewNoteModal]
 })
 export class ListPageModule {}

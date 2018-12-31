@@ -7,5 +7,8 @@ import { Component, Input } from '@angular/core';
 })
 export class HeaderComponent {
   @Input()
-  title: string;
+  backIcon: string = 'menu';
+
+  @Input()
+  moreIcon: string = 'more';
 }

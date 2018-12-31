@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Input } from '@angular/core';
 import * as moment from 'moment';
 
 import { NoteService } from 'src/app/services/note.service';
@@ -15,18 +15,19 @@ export class ListPage implements OnInit {
   notes: Note[] = [];
   noNotes: boolean = false;
 
+  private noteList: Note[] = [];
+
   constructor(private noteService: NoteService, public mCtrl: ModalController) {}
 
   ngOnInit() {
-    this.noteService.getAllNotes().then(notes => {
-      if (notes.length === 0) {
-        return (this.noNotes = true);
-      }
+    this.getAllNotes();
+  }
 
-      this.notes = notes.map(note => {
-        note.lastEdited = moment(note.lastEdited).fromNow();
-        return note;
-      });
+  filterNotes(filterBy: string) {
+    const noteList = this.noteList.slice();
+
+    this.notes = noteList.filter(note => {
+      return note.title.toLowerCase().includes(filterBy.toLowerCase());
     });
   }
 
@@ -46,6 +47,27 @@ export class ListPage implements OnInit {
     });
 
     return await modal.present();
+  }
+
+  newNoteAdded(event: boolean): void {
+    if (event) {
+      return this.getAllNotes();
+    }
+  }
+
+  private getAllNotes(): void {
+    this.noteService.getAllNotes().then(notes => {
+      if (notes.length === 0) {
+        return (this.noNotes = true);
+      }
+
+      this.noteList = notes.map(note => {
+        note.lastEdited = moment(note.lastEdited).fromNow();
+        return note;
+      });
+
+      this.notes = this.noteList.slice();
+    });
   }
 
   private sortByLastTouched(array: Note[]) {}
